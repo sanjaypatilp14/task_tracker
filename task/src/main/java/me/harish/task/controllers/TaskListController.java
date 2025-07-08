@@ -26,10 +26,12 @@ public class TaskListController {
 
     @GetMapping
     public List<TaskListDto> listTaskLists(){
-       return taskListService.listtaskList()
+       return taskListService.listTaskLists()
                 .stream()
                 .map(taskListMapper::toDto )
                 .toList();
     }
 
 }
+//1:29:08
+//TODO :1:29:08
