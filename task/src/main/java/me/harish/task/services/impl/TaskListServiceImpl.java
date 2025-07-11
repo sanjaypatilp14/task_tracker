@@ -1,5 +1,6 @@
 package me.harish.task.services.impl;
 
+import jakarta.transaction.Transactional;
 import me.harish.task.domain.entities.TaskList;
 import me.harish.task.repositories.TaskListRepository;
 import me.harish.task.services.TaskListService;
@@ -50,6 +51,7 @@ public class TaskListServiceImpl implements TaskListService {
         return taskListRepository.findById(id);
     }
 
+    @Transactional
     @Override
     public TaskList updateTaskList(UUID taskListId, TaskList taskList) {
         if(null == taskList.getId()){

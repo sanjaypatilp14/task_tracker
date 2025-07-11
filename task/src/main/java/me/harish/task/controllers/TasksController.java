@@ -1,15 +1,15 @@
 package me.harish.task.controllers;
 
 import me.harish.task.domain.dto.TaskDto;
+import me.harish.task.domain.dto.TaskListDto;
+import me.harish.task.domain.entities.Task;
 import me.harish.task.mappers.TaskMapper;
 import me.harish.task.repositories.TaskRepositoy;
 import me.harish.task.services.TaskService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -31,5 +31,43 @@ public class TasksController {
                 .map(taskMapper::toDto)
                 .toList();
     }
-    //todo: 2:13:46
+
+    @PostMapping
+    public TaskDto createTask(
+            @PathVariable("task_list_id") UUID taskListId,
+            @RequestBody TaskDto taskDto
+    ){
+         Task createdTask= taskService.createTask(taskListId,taskMapper.fromDto(taskDto));
+         return taskMapper.toDto(createdTask);
+    }
+
+    @GetMapping(path = "/{task_id}")
+    public Optional<TaskDto> getTask(
+            @PathVariable("task_list_id") UUID taskListId,
+            @PathVariable("task_id") UUID taskId
+    ){
+        return taskService.getTask(taskListId,taskId).map(taskMapper::toDto);
+    }
+
+    @PutMapping(path = "/{task_id}")
+    public TaskDto updateTask(
+            @PathVariable("task_list_id") UUID taskListId,
+            @PathVariable("task_id") UUID taskId,
+            @RequestBody TaskDto taskDto
+    ){
+        Task updatedTask =taskService.updateTask(taskListId,taskId,taskMapper.fromDto(taskDto));
+
+        return taskMapper.toDto(updatedTask);
+    }
+
+    @DeleteMapping(path = "/{task_id}")
+    public void deleteTask(
+            @PathVariable("task_list_id") UUID taskListId,
+            @PathVariable("task_id") UUID taskId
+    ){
+        taskService.deleteTask(taskListId,taskId);
+    }
+
+
+
 }
