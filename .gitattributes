@@ -1,0 +1,53 @@
+# Enforce LF line endings for all text files
+* text=auto eol=lf
+
+# =========================
+# Frontend (React + Vite)
+# =========================
+*.js     text eol=lf
+*.jsx    text eol=lf
+*.ts     text eol=lf
+*.tsx    text eol=lf
+*.json   text eol=lf
+*.html   text eol=lf
+*.css    text eol=lf
+*.scss   text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.sh     text eol=lf
+*.env    text eol=lf
+*.txt    text eol=lf
+
+# Vite config
+vite.config.ts text eol=lf
+
+# =========================
+# Backend (Spring Boot)
+# =========================
+*.java   text eol=lf
+*.xml    text eol=lf
+*.properties text eol=lf
+*.gradle text eol=lf
+*.sql    text eol=lf
+
+# Application configs
+application.yml text eol=lf
+application.properties text eol=lf
+
+# =========================
+# Binary files (no CRLF conversion)
+# =========================
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.ttf    binary
+*.woff   binary
+*.woff2  binary
+*.eot    binary
+*.pdf    binary
+*.jar    binary
+*.zip    binary
+*.mp4    binary
